@@ -2,8 +2,8 @@
 
  - Homepage
  	- Navigation: showcase, sandbox, documentation, data
- 	- List of visually compelling example projects
- 	- List of documented data sources
+ 	- Selection of visually compelling featured projects (linking to full list of projects)
+ 	- Selection of featured data sources (linking to full list of documented data sources)
 
  - Data sources
  	- RC stream API: We could document some mixture of Ori's new SocketIO API, the IRC feed (yuck), the [wikimon client](https://github.com/hatnote/wikimon) (python), or [wikichanges](https://github.com/edsu/wikichanges) (node)
