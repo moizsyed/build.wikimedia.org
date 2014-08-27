@@ -20,6 +20,63 @@
 
 - Showcase
 	- Organized by data source/author. Preference for open source code, especially if it can serve as a tutorial example.
+	- Wikimedia Community Visualization
+		- http://haithams.github.io/community_visualization/
+		- Code: https://github.com/haithams/community_visualization
+		- Source: bulk
+	- Co-editing patterns on Wikipedia
+		- http://wikiproject.oii.ox.ac.uk/networks/index.php
+		- Code: not published?
+		- Source: bulk
+	- Information Imbalance: Africa on Wikipedia
+		- http://geography.oii.ox.ac.uk/2013/10/information-imbalance-africa-on-wikipedia/
+		- Code: not published?
+		- Source: bulk
+	- Art History on Wikipedia
+		- http://vsem.ec.tuwien.ac.at/wikiarthistory/index.php?entry=entry120519-174955
+		- Code: not published?
+		- Source: dbpedia
+	- Emergent Mosaic of Wikipedian Activity
+		- http://abeautifulwww.com/2007/05/20/visualizing-the-power-struggle-in-wikipedia/
+		- Code: not published?
+		- Source: bulk
+	- Flow Circle
+		- http://flowcircle.herokuapp.com/
+		- Code: not published?
+		- Source: bulk
+	- Wikipedia Worldview
+		- http://www.wikipediaworldview.net/
+		- Code: not published?
+		- Source: Wikilocation API
+	- ClusterBall
+		- http://www.chrisharrison.net/index.php/Visualizations/ClusterBall
+		- Code: not published?
+		- Source: bulk
+	- Notabilia
+		- http://notabilia.net/
+		- Code: not published?
+		- Source: bulk
+	- A Map of the Geographic Structure of Wikipedia Topics
+		- http://olihb.com/2013/01/23/a-map-of-the-geographic-structure-of-wikipedia-topics/
+		- Code: not published?
+		- Source: bulk
+	- Map of Wiki Loves Monuments
+		- http://www.panoramap.org/
+		- Code: https://github.com/bzg/wlmmap
+		- Source: https://commons.wikimedia.org/wiki/Commons:Monuments_database
+	- wikistream
+		- http://wikistream.wmflabs.org/
+		- Code: https://github.com/edsu/wikistream
+		- Source: RC feed (IRC)
+	- Wikipedia Gender
+		- http://moebio.com/research/wikipediagender/
+		- Code: not published?
+		- Source: Web API
+	- Wikistalker
+		- http://sepans.com/wikistalker/
+		- Code: not published?
+		- Source: http://wikipedia-miner.cms.waikato.ac.nz/
+		
 
 - Sandbox
 	- Interactive area to experiment with the API. Not crucial for a minimal prototype.
