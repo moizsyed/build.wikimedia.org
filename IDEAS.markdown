@@ -81,5 +81,5 @@
 - Sandbox
 	- Interactive area to experiment with the API. Not crucial for a minimal prototype.
 
-- Data
+- Other data
 	- Links to the [bulk downloads](http://dumps.wikimedia.org/) and other interesting material (like [pageview data](http://stats.grok.se/)). This should be an unramp to key points on mediawiki.org
