@@ -20,6 +20,22 @@
 
 - Showcase
 	- Organized by data source/author. Preference for open source code, especially if it can serve as a tutorial example.
+	- Local Wikipedia Map
+		- http://lwmap.uni-koeln.de/
+		- Code: not published?
+		- Source: dbpedia
+	- Wikipedia globe
+		- http://simia.net/wikiglobe/
+		- Code: https://github.com/vrandezo/wikiglobe
+		- Source: dbpedia
+	- Paris Review Interviews and Wikipedia
+		- http://edsu.github.io/parisreview/
+		- Code: https://github.com/edsu/parisreview
+		- Source: dbpedia
+	- WikiChanges
+		- http://sergionunes.com/p/wikichanges/
+		- Code: not published?
+		- Source: Web API
 	- Wikimedia Community Visualization
 		- http://haithams.github.io/community_visualization/
 		- Code: https://github.com/haithams/community_visualization
