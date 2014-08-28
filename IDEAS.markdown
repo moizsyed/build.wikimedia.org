@@ -20,6 +20,10 @@
 
 - Showcase
 	- Organized by data source/author. Preference for open source code, especially if it can serve as a tutorial example.
+	- Wikipedia Live Monitor
+		- http://wikipedia-irc.herokuapp.com/
+		- Code: https://github.com/tomayac/wikipedia-irc
+		- Source: RC Feed
 	- RC Map
 		- http://rcmap.hatnote.com
 		- Code: https://github.com/hatnote/rcmap
