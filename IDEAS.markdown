@@ -20,6 +20,34 @@
 
 - Showcase
 	- Organized by data source/author. Preference for open source code, especially if it can serve as a tutorial example.
+	- RC Map
+		- http://rcmap.hatnote.com
+		- Code: https://github.com/hatnote/rcmap
+		- Source: RC Feed
+	- Listen to Wikipedia
+		- http://listen.hatnote.com
+		- Code: https://github.com/hatnote/listen-to-wikipedia
+		- Source: RC Feed
+	- Terra Incognita
+		- http://www.tracemedia.co.uk/terra/map/
+		- Code: not published?
+		- Source: bulk
+	- Wikipedia Vision
+		- http://www.lkozma.net/wpv/index.html
+		- Code: not published?
+		- Source: Web API
+	- Wikipedia and Wikidata Realtime Edit Stats
+		- https://wikipedia-edits.herokuapp.com/
+		- Code: https://github.com/tomayac/wikipedia-edits-server-sent-events
+		- Source: RC Feed
+	- Linkypedia
+		- http://linkypedia.info/
+		- Code: https://github.com/edsu/linkypedia
+		- Source: RC Feed, Web API
+	- Wikipulse
+		- http://wikipulse.herokuapp.com/
+		- Code: https://github.com/edsu/wikipulse
+		- Source: RC Feed
 	- Local Wikipedia Map
 		- http://lwmap.uni-koeln.de/
 		- Code: not published?
@@ -83,7 +111,7 @@
 	- wikistream
 		- http://wikistream.wmflabs.org/
 		- Code: https://github.com/edsu/wikistream
-		- Source: RC feed (IRC)
+		- Source: RC feed
 	- Wikipedia Gender
 		- http://moebio.com/research/wikipediagender/
 		- Code: not published?
