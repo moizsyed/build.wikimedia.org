@@ -1,7 +1,7 @@
 # Site outline
 
  - Homepage
- 	- Navigation: showcase, sandbox, documentation, data
+ 	- Navigation: showcase, sandbox, documentation, other data
  	- Selection of visually compelling featured projects (linking to full list of projects)
  	- Selection of featured data sources (linking to full list of documented data sources)
 
@@ -124,10 +124,15 @@
 		- http://sepans.com/wikistalker/
 		- Code: not published?
 		- Source: http://wikipedia-miner.cms.waikato.ac.nz/
-		
+	- Other interesting examples of how people can connect to Wikipedia data:
+		- [Github code search for Wikipedia's web API](https://github.com/search?q=wikipedia.org%2Fw%2Fapi.php&type=Code&ref=searchresults)
+		- [IFTTT recipies](https://www.google.com/#q=wikipedia+site:ifttt.com)
+		- MashApe's [Wikipedia API docs](https://www.mashape.com/community/wikipedia)
+		- [Wikipedia API intro](http://www.codecademy.com/courses/web-beginner-en-yd3lp/0/1) on Codecademy
+		- [Stack overflow questions](http://stackoverflow.com/questions/tagged/wikipedia-api)
 
 - Sandbox
 	- Interactive area to experiment with the API. Not crucial for a minimal prototype.
 
 - Other data
-	- Links to the [bulk downloads](http://dumps.wikimedia.org/) and other interesting material (like [pageview data](http://stats.grok.se/)). This should be an unramp to key points on mediawiki.org
+	- Links to the [bulk downloads](http://dumps.wikimedia.org/) and other interesting material (like [pageview data](http://stats.grok.se/)) and [Research:Data](https://meta.wikimedia.org/wiki/Research:Data). This should be an onramp to key points on mediawiki.org
