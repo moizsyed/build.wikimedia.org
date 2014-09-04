@@ -1,12 +1,12 @@
 # Introduction
 
-The recent changes stream is a live, public feed of activity on all Wikimedia wikis, including Wikipedia, available in over 270 languages. Using the recent changes stream, you can build applications on top of the massive amount of realtime data from Wikipedia. This data powers projects to [identify trending news topics](http://wikipedia-irc.herokuapp.com/), [sonify and visualize Wikipedia edits](http://listen.hatnote.com), [monitor edits from US Congress](https://twitter.com/congressedits), and more.
+The recent changes stream is a live, public feed of activity on all Wikimedia wikis, including Wikipedia, available in over 270 languages. Using the recent changes stream, you can build applications on top of the massive amount of realtime data from Wikipedia. This data powers projects that [identify trending news topics](http://wikipedia-irc.herokuapp.com/), [sonify and visualize Wikipedia edits](http://listen.hatnote.com), [monitor edits from US Congress](https://twitter.com/congressedits), and more.
 
 # Connecting
 
 An application can connect to the recent changes stream with a [SocketIO client](http://socket.io/docs/client-api/). First, connect to `stream.wikimedia.org/rc`. Then, subscribe to any Wikimedia wiki in the format `[language code].[wiki].org`.
 
-For example, to connect to English Wikipedia:
+For example, to connect and subscribe to English Wikipedia:
 
 ```javascript
 var socket = io.connect('stream.wikimedia.org/rc');
@@ -16,24 +16,16 @@ socket.on('connect', function () {
 });
 ````
 
-You can also connect to a list of wikis:
+You can also subscribe to a list of wikis:
 
 ```javascript
-var socket = io.connect('stream.wikimedia.org/rc');
- 
-socket.on('connect', function () {
-  socket.emit('subscribe', ['en.wikipedia.org', 'de.wikipedia.org', 'es.wikinews.org']);
-});
+socket.emit('subscribe', ['en.wikipedia.org', 'de.wikipedia.org', 'es.wikinews.org']);
 ````
 
 Or subscribe to all wikis, with `*`:
 
 ```javascript
-var socket = io.connect('stream.wikimedia.org/rc');
- 
-socket.on('connect', function () {
-  socket.emit('subscribe', '*');
-});
+socket.emit('subscribe', '*');
 ````
 
 See a [full list of available wikis and languages](https://meta.wikimedia.org/wiki/Complete_list_of_Wikimedia_projects). 
@@ -78,7 +70,7 @@ TODO: add a live widget, such as: http://jsfiddle.net/7rgxxkok/11/
 | revision | For an `edit` action, this is an array with the revision id for the `new` and `old` version of the page.
 | patrolled | Whether the action has a [patrolled flag](https://www.mediawiki.org/wiki/Help:Patrolled_edits). Only present for `new` and `edit` actions. (TODO: verify?)
 
-The following paramteres are only present for `log`-type actions:
+The following parameters are only present for `log`-type actions:
 
 | Parameter | Description |
 |-----------|-------------|
