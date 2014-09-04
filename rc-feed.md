@@ -40,7 +40,7 @@ See a [full list of available wikis and languages](https://meta.wikimedia.org/wi
 
 # Using the recent changes stream
 
-Each action is delivered as a `change` event. A `change` event may describe an edit to a Wikipedia article, a new page creation, a user registration, or other various log actions. 
+Each action is delivered as a change event. A change event may describe an edit to a Wikipedia article, a new page creation, a user registration, or other various log actions. 
 
 ```javascript
 var socket = io.connect('stream.wikimedia.org/rc');
@@ -77,6 +77,11 @@ TODO: add a live widget, such as: http://jsfiddle.net/7rgxxkok/11/
 | minor | Whether the action has a minor flag.
 | revision | For an `edit` action, this is an array with the revision id for the `new` and `old` version of the page.
 | patrolled | Whether the action has a [patrolled flag](https://www.mediawiki.org/wiki/Help:Patrolled_edits). Only present for `new` and `edit` actions. (TODO: verify?)
+
+The following paramteres are only present for `log`-type actions:
+
+| Parameter | Description |
+|-----------|-------------|
 | log\_action | Values may include `create` (new users), `move` (changing a page title), `hit` (triggering an abuse filter), or `delete` (removing a page).
 | log\_action_comment | A description of a `log` action.
 | log_id | TODO: What is this?
@@ -85,7 +90,7 @@ TODO: add a live widget, such as: http://jsfiddle.net/7rgxxkok/11/
 
 TODO: verify against [MachineReadableRCFeedFormatter.php](https://github.com/wikimedia/mediawiki-core/blob/master/includes/rcfeed/MachineReadableRCFeedFormatter.php) and the [RecentChanges table](https://www.mediawiki.org/wiki/Manual:Recentchanges_table).
 
-## Abuncha clients
+## SocketIO client libraries
 
 - Android: [socket.io-client.java](https://github.com/nkzawa/socket.io-client.java)
 - iOS: [SIOSocket](https://github.com/MegaBits/SIOSocket)
