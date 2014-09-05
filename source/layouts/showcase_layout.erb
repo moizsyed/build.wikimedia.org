@@ -2,7 +2,6 @@
   <header>
     <p><%= current_page.data.year %></p>
     <h1><%= current_page.data.title %></h1>
-    <p><%= current_page.data.description %></p>
     <%= image_tag File.join('showcase', current_page.slug, current_page.data.image) %>
   </header>
 
@@ -16,6 +15,6 @@
       <% end %>
     </ul>
   </aside>
-
+   <p><%= current_page.data.description %></p>
   <%= yield %>
 <% end %>

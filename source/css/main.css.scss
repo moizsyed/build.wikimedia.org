@@ -2,15 +2,17 @@
 @import '_syntax';
 
 $color-light-grey: #f4f5f8;
+$color-dark-grey: #505961;
+$color-blue: #347bff;
 
 body {
   font-family: Helvetica, sans-serif;
   background: #fff;
-  color: #000;
+  color: $color-dark-grey;
 }
 
 a {
-  color: #30377b;
+  color: $color-blue;
   text-decoration: none;
 }
 
@@ -20,8 +22,9 @@ a {
 }
 
 #header {
-  background: $color-light-grey;
+  background: #fff;
   margin-bottom: 2em;
+  border-bottom: 1px #b2b2b2 solid;
 
   h1, ul, li, li a {
     display: inline-block;
@@ -32,7 +35,7 @@ a {
   }
 
   h1 a {
-    color: #000;
+    color: $color-dark-grey;
   }
 
   li {
@@ -54,7 +57,7 @@ a {
   h1 {
     font-size: 20px;
     padding-left: 33px;
-    background: inline-image('wmf-logo.svg') 0 50% no-repeat;
+    background: inline-image('build.svg') 0 50% no-repeat;
     background-size: 24px auto;
   }
 
@@ -116,18 +119,25 @@ ul.documentation {
 
   header {
     position: relative;
-    min-height: 240px;
+    min-height: 220px;
     border-bottom: 1px #ccc solid;
     margin-bottom: 2em;
 
     h1 {
-      font-size: 42px;
-      margin-left: -.05em;
+      font-size: 64px;
+      font-weight: bold;
+      width: 60%;
+      margin-top: 8px;
+      color: $color-blue;
+      line-height: 74px;
+      letter-spacing: -0.005em;
     }
 
     p {
       margin: 0;
       width: 60%;
+      font-family: Georgia, Serif;
+      font-size: 26px;
     }
 
     img {
