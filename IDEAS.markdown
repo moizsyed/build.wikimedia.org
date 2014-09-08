@@ -1,0 +1,138 @@
+# Site outline
+
+ - Homepage
+ 	- Navigation: showcase, sandbox, documentation, other data
+ 	- Selection of visually compelling featured projects (linking to full list of projects)
+ 	- Selection of featured data sources (linking to full list of documented data sources)
+
+ - Data sources
+ 	- RC stream API: We could document some mixture of Ori's new SocketIO API, the IRC feed (yuck), the [wikimon client](https://github.com/hatnote/wikimon) (python), or [wikichanges](https://github.com/edsu/wikichanges) (node)
+ 		- State of the docs: [current docs](https://wikitech.wikimedia.org/wiki/RCStream)
+ 		- Potential demos: [wikistream](http://wikistream.wmflabs.org/), [rcmap](http://rcmap.hatnote.com/#en), [wikipulse](http://wikipulse.herokuapp.com/)
+ 		- Potential sandbox: [test client](http://alpha.hatnote.com/wikimon-test/index.html)
+ 		- Libraries: test client?
+ 	- Some component of the Wikipedia API: probably `action=query`, focusing on the props/lists/generators that are relevant for articles (and only require read rights).
+ 		- State of the docs: [raw docs](http://en.wikipedia.org/w/api.php), [general wiki docs](https://www.mediawiki.org/wiki/API:Main_page), [general tutorial](https://www.mediawiki.org/wiki/API:Tutorial), [old php-focused tutorial](https://www.ibm.com/developerworks/xml/library/x-phpwikipedia/index.html)
+ 		- Potential demos: [wikichanges](http://sergionunes.com/p/wikichanges/), [wikipedia gender](http://moebio.com/research/wikipediagender/#tv_programs&films&books&emotions&cities&sports&from_list) -- something simple based on the coordinates / geosearch API?
+ 		- Potential sandbox: [API sandbox](https://en.wikipedia.org/wiki/Special:ApiSandbox)
+ 		- Links to the [client list](https://www.mediawiki.org/wiki/API:Client_code)
+ 	- Include short examples throughout (js/python/php/ruby?)
+
+- Showcase
+	- Organized by data source/author. Preference for open source code, especially if it can serve as a tutorial example.
+	- Wikipedia Live Monitor
+		- http://wikipedia-irc.herokuapp.com/
+		- Code: https://github.com/tomayac/wikipedia-irc
+		- Source: RC Feed
+	- RC Map
+		- http://rcmap.hatnote.com
+		- Code: https://github.com/hatnote/rcmap
+		- Source: RC Feed
+	- Listen to Wikipedia
+		- http://listen.hatnote.com
+		- Code: https://github.com/hatnote/listen-to-wikipedia
+		- Source: RC Feed
+	- Terra Incognita
+		- http://www.tracemedia.co.uk/terra/map/
+		- Code: not published?
+		- Source: bulk
+	- Wikipedia Vision
+		- http://www.lkozma.net/wpv/index.html
+		- Code: not published?
+		- Source: Web API
+	- Wikipedia and Wikidata Realtime Edit Stats
+		- https://wikipedia-edits.herokuapp.com/
+		- Code: https://github.com/tomayac/wikipedia-edits-server-sent-events
+		- Source: RC Feed
+	- Linkypedia
+		- http://linkypedia.info/
+		- Code: https://github.com/edsu/linkypedia
+		- Source: RC Feed, Web API
+	- Wikipulse
+		- http://wikipulse.herokuapp.com/
+		- Code: https://github.com/edsu/wikipulse
+		- Source: RC Feed
+	- Local Wikipedia Map
+		- http://lwmap.uni-koeln.de/
+		- Code: not published?
+		- Source: dbpedia
+	- Wikipedia globe
+		- http://simia.net/wikiglobe/
+		- Code: https://github.com/vrandezo/wikiglobe
+		- Source: dbpedia
+	- Paris Review Interviews and Wikipedia
+		- http://edsu.github.io/parisreview/
+		- Code: https://github.com/edsu/parisreview
+		- Source: dbpedia
+	- WikiChanges
+		- http://sergionunes.com/p/wikichanges/
+		- Code: not published?
+		- Source: Web API
+	- Wikimedia Community Visualization
+		- http://haithams.github.io/community_visualization/
+		- Code: https://github.com/haithams/community_visualization
+		- Source: bulk
+	- Co-editing patterns on Wikipedia
+		- http://wikiproject.oii.ox.ac.uk/networks/index.php
+		- Code: not published?
+		- Source: bulk
+	- Information Imbalance: Africa on Wikipedia
+		- http://geography.oii.ox.ac.uk/2013/10/information-imbalance-africa-on-wikipedia/
+		- Code: not published?
+		- Source: bulk
+	- Art History on Wikipedia
+		- http://vsem.ec.tuwien.ac.at/wikiarthistory/index.php?entry=entry120519-174955
+		- Code: not published?
+		- Source: dbpedia
+	- Emergent Mosaic of Wikipedian Activity
+		- http://abeautifulwww.com/2007/05/20/visualizing-the-power-struggle-in-wikipedia/
+		- Code: not published?
+		- Source: bulk
+	- Flow Circle
+		- http://flowcircle.herokuapp.com/
+		- Code: not published?
+		- Source: bulk
+	- Wikipedia Worldview
+		- http://www.wikipediaworldview.net/
+		- Code: not published?
+		- Source: Wikilocation API
+	- ClusterBall
+		- http://www.chrisharrison.net/index.php/Visualizations/ClusterBall
+		- Code: not published?
+		- Source: bulk
+	- Notabilia
+		- http://notabilia.net/
+		- Code: not published?
+		- Source: bulk
+	- A Map of the Geographic Structure of Wikipedia Topics
+		- http://olihb.com/2013/01/23/a-map-of-the-geographic-structure-of-wikipedia-topics/
+		- Code: not published?
+		- Source: bulk
+	- Map of Wiki Loves Monuments
+		- http://www.panoramap.org/
+		- Code: https://github.com/bzg/wlmmap
+		- Source: https://commons.wikimedia.org/wiki/Commons:Monuments_database
+	- wikistream
+		- http://wikistream.wmflabs.org/
+		- Code: https://github.com/edsu/wikistream
+		- Source: RC feed
+	- Wikipedia Gender
+		- http://moebio.com/research/wikipediagender/
+		- Code: not published?
+		- Source: Web API
+	- Wikistalker
+		- http://sepans.com/wikistalker/
+		- Code: not published?
+		- Source: http://wikipedia-miner.cms.waikato.ac.nz/
+	- Other interesting examples of how people can connect to Wikipedia data:
+		- [Github code search for Wikipedia's web API](https://github.com/search?q=wikipedia.org%2Fw%2Fapi.php&type=Code&ref=searchresults)
+		- [IFTTT recipies](https://www.google.com/#q=wikipedia+site:ifttt.com)
+		- MashApe's [Wikipedia API docs](https://www.mashape.com/community/wikipedia)
+		- [Wikipedia API intro](http://www.codecademy.com/courses/web-beginner-en-yd3lp/0/1) on Codecademy
+		- [Stack overflow questions](http://stackoverflow.com/questions/tagged/wikipedia-api)
+
+- Sandbox
+	- Interactive area to experiment with the API. Not crucial for a minimal prototype.
+
+- Other data
+	- Links to the [bulk downloads](http://dumps.wikimedia.org/) and other interesting material (like [pageview data](http://stats.grok.se/)) and [Research:Data](https://meta.wikimedia.org/wiki/Research:Data). This should be an onramp to key points on mediawiki.org
