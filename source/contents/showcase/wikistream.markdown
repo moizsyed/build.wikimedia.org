@@ -23,7 +23,7 @@ data_types:
   - user_contributions
   - article_revisions
 data_sources:
-  - RCStream
+  - Recent Changes Stream
 ---
 
 ## This project is awesome

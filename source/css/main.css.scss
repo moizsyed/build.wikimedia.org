@@ -4,6 +4,7 @@
 $color-light-grey: #f4f5f8;
 $color-dark-grey: #505961;
 $color-blue: #347bff;
+$color-semi-grey: #91989d;
 
 body {
   font-family: Helvetica, sans-serif;
@@ -86,17 +87,27 @@ ul.documentation {
     width: 30%;
   }
 }
-
+.highlight {
+  background-color: $color-light-grey;
+}
 .content {
-  line-height: 1.5;
+  line-height: 1.6;
   margin-bottom: 50px;
 
+  h1 {
+    font-size: 30px;
+  }
   h2 {
     font-size: 24px;
+    margin: .25em 0;
+  }
+
+  p {
+    margin-bottom: 2em;
   }
 
   p, h2 {
-    margin: .5em 0;
+    width: 60%;
   }
 
   th {
@@ -105,12 +116,41 @@ ul.documentation {
 
   th, td {
     padding: 4px 8px;
-    border: 1px solid #ccc;
+    border: none;
+    border-right: none;
+    border-left: none;
+    padding: .85em 1em .85em 1em;
   }
+
+
 
   pre {
     font-family: monospace;
     padding: 1em;
+    width: 60%;
+    overflow: auto;
+    white-space: pre-wrap;                 /* CSS3 browsers  */
+    white-space: -moz-pre-wrap !important; /* 1999+ Mozilla  */
+    white-space: -pre-wrap;                /* Opera 4 thru 6 */
+    white-space: -o-pre-wrap;              /* Opera 7 and up */
+    word-wrap: break-word;                 /* IE 5.5+ and up */
+    /* overflow-x: auto; */                /* Firefox 2 only */
+    /* width: 99%; */          /* only if needed */
+  }
+
+  table {
+    width: 62%;
+
+    thead {
+      text-align: left;
+      border-top: 0px;
+      border-bottom: 2px solid $color-semi-grey;
+      background: $color-light-grey;
+    }
+
+
+    tr:nth-child(even) {background: $color-light-grey}
+    tr:nth-child(2n+3) {background: #FFF}
   }
 
   a:hover {
@@ -125,11 +165,10 @@ ul.documentation {
 
     h1 {
       font-size: 64px;
-      font-weight: bold;
       width: 60%;
       margin-top: 8px;
       color: $color-blue;
-      line-height: 74px;
+      line-height: 70px;
       letter-spacing: -0.005em;
     }
 
@@ -137,7 +176,8 @@ ul.documentation {
       margin: 0;
       width: 60%;
       font-family: Georgia, Serif;
-      font-size: 26px;
+      font-size: 22px;
+      color: $color-semi-grey;
     }
 
     img {
