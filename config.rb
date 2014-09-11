@@ -43,7 +43,8 @@ set :relative_links, true
 activate :relative_assets
 
 set :markdown_engine, :redcarpet
-set :markdown, fenced_code_blocks: true, tables: true
+set :markdown, fenced_code_blocks: true, tables: true, with_toc_data: true
+
 
 activate :syntax
 
@@ -51,6 +52,7 @@ activate :blog do |blog|
   blog.sources = "contents/{category}/{title}.html"
   blog.permalink = "{category}/{title}.html"
 end
+
 
 # Build-specific configuration
 configure :build do
@@ -68,4 +70,13 @@ configure :build do
 
   # Or use a different image path
   # set :http_prefix, "/Content/images/"
+end
+
+helpers do
+  def table_of_contents(resource)
+    content = File.read(resource.source_file)
+    toc_renderer = Redcarpet::Render::HTML_TOC.new
+    markdown = Redcarpet::Markdown.new(toc_renderer, nesting_level: 2) # nesting_level is optional
+    markdown.render(content)
+  end
 end

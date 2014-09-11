@@ -1,8 +1,13 @@
 <% wrap_layout :layout do %>
   <header>
-    <p>API Documentation</p>
+    <p>Documentation</p>
     <h1><%= current_page.data.title %></h1>
   </header>
+
+  <aside>
+    <%= table_of_contents(current_page) %>
+  </aside>
+
   <p><%= current_page.data.description %></p>
   <%= yield %>
 <% end %>

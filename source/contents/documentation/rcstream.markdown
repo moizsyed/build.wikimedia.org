@@ -1,8 +1,9 @@
 ---
 category: documentation
 title: Recent Changes Stream
-description:
 date: 2014/05/09
+description:
+
 ---
 
 # Introduction
@@ -62,7 +63,7 @@ socket.on('change', function (data) {
 });
 ```
 
-## Change event details
+# Change event details
 
 | Parameter | Description |
 |-----------|-------------|
@@ -88,7 +89,7 @@ socket.on('change', function (data) {
 | log\_params | An array of additional params related to the `log_action`.
 | log\_type | TODO: How is this different from `log_action`?
 
-## Abuncha clients
+# Abuncha clients
 
 - Android: [socket.io-client.java](https://github.com/nkzawa/socket.io-client.java)
 - iOS: [SIOSocket](https://github.com/MegaBits/SIOSocket)
