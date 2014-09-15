@@ -1,0 +1,286 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="...">
+
+<title>Recent Changes Stream Docs</title>
+
+<script src="jquery.js" type="text/javascript"></script>
+<script src="socket.io.min.js" type="text/javascript"></script>
+<script src="underscore.min.js" type="text/javascript"></script>
+
+<link rel="stylesheet" href="pure.css">
+<link rel="stylesheet" href="style.css">
+
+<!--[if lt IE 9]>
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7/html5shiv.js"></script>
+<![endif]-->
+
+<!-- NOTE: http://jsfiddle.net/7rgxxkok/11/ -->
+
+<script>
+var LIMIT = 3;
+var recent_edits = [];
+var socket = io.connect('stream.wikimedia.org/rc');
+
+socket.on('connect', function () {
+    socket.emit('subscribe', '*');
+});
+
+function add_edit(data) {
+    $('#results').fadeOut('slow', function () {
+        // note, I could make a human readable language code from data.wiki, using https://github.com/hatnote/lidnote/blob/master/wikis.json
+        $('#results').fadeIn().html('<p>User <a href="' + data.server_url + '/wiki/User:' + data.user + '">' + data.user + '</a> changed <a href="' + data.server_url + '/wiki/' + data.title + '">' + data.title + '</a> on ' + data.wiki + '</p><pre>' + JSON.stringify(data, null, '\t') + '</pre>');
+    });
+}
+
+socket.on('change', _.throttle(add_edit, 7000));
+socket.on('change', function (data) {
+    // Count edits per minute
+    recent_edits.push(new Date(data.timestamp * 1000));
+    recent_edits = recent_edits.filter(function (edit) {
+        return Date.now() - edit <= 60000;
+    });
+    $('#rate').html(recent_edits.length);
+});
+</script>
+
+</head>
+<body>
+
+<div id="layout">
+
+    <div id="menu">
+        <div class="pure-menu pure-menu-open pure-menu-horizontal">
+            <a class="pure-menu-heading" href="#">build.wikimedia.org</a>
+
+            <ul>
+                <li class="menu-item-divided pure-menu-selected"><a href="#">Showcase</a></li>
+                <li><a href="#">Documentation</a></li>
+
+                <li>
+                    <a href="#">Sandbox</a>
+                </li>
+
+                <li><a href="#">Data</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <div id="main">
+        <div class="header">
+            <h1>Recent Changes Stream</h1>
+            <h2>Documentation</h2>
+        </div>
+
+        <div class="content">
+            <div class="pure-menu pure-menu-open">
+                <a class="pure-menu-heading">Table of contents</a>
+                <ul>
+                    <li>
+                        <a href="#introduction">Introduction</a>
+                    </li>
+                    <li>
+                        <a href="#connecting">Connecting</a>
+                    </li>
+                    <li>
+                        <a href="#using-the-recent-changes-stream">Using the recent changes stream</a>
+                        <ul>
+                            <li>
+                                <a href="#change-event-details">Change event details</a>
+                            </li>
+                            <li>
+                                <a href="#socketio-client-libraries">SocketIO client libraries</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#more-information">More information</a>
+                    </li>
+                </ul>
+            </div>
+            <h1 id="introduction">Introduction</h1>
+
+            <p>The recent changes stream is a live, public feed of activity on all Wikimedia wikis, including Wikipedia, available in over 270 languages. Using the recent changes stream, you can build applications on top of the massive amount of realtime data from Wikipedia. This data powers projects that <a href="http://wikipedia-irc.herokuapp.com/">identify trending news topics</a>, <a href="http://listen.hatnote.com">sonify and visualize Wikipedia edits</a>, <a href="https://twitter.com/congressedits">monitor edits from US Congress</a>, and more.</p>
+
+            <h1 id="connecting">Connecting</h1>
+
+            <p>An application can connect to the recent changes stream with a <a href="http://socket.io/docs/client-api/">SocketIO client</a>. First, connect to <code>stream.wikimedia.org/rc</code>. Then, subscribe to any Wikimedia wiki in the format <code>[language code].[wiki].org</code>.</p>
+
+            <p>For example, to connect and subscribe to English Wikipedia:</p>
+
+            <pre class="code highlight javascript" data-lanugage="javascript"><code class="rainbow"><span class="kd">var</span> <span class="nx">socket</span> <span class="o">=</span> <span class="nx">io</span><span class="p">.</span><span class="nx">connect</span><span class="p">(</span><span class="s1">'stream.wikimedia.org/rc'</span><span class="p">);</span>
+
+            <span class="nx">socket</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">'connect'</span><span class="p">,</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+              <span class="nx">socket</span><span class="p">.</span><span class="nx">emit</span><span class="p">(</span><span class="s1">'subscribe'</span><span class="p">,</span> <span class="s1">'en.wikipedia.org'</span><span class="p">);</span>
+            <span class="p">});</span></code>
+            </pre>
+
+            <p>You can also subscribe to a list of wikis:</p>
+
+            <pre class="highlight javascript"><span class="nx">socket</span><span class="p">.</span><span class="nx">emit</span><span class="p">(</span><span class="s1">'subscribe'</span><span class="p">,</span> <span class="p">[</span><span class="s1">'en.wikipedia.org'</span><span class="p">,</span> <span class="s1">'de.wikipedia.org'</span><span class="p">,</span> <span class="s1">'es.wikinews.org'</span><span class="p">]);</span>
+            </pre>
+
+            <p>Or subscribe to all wikis, with <code>*</code>:</p>
+
+            <pre class="highlight javascript"><span class="nx">socket</span><span class="p">.</span><span class="nx">emit</span><span class="p">(</span><span class="s1">'subscribe'</span><span class="p">,</span> <span class="s1">'*'</span><span class="p">);</span>
+            </pre>
+
+            <p>See a <a href="https://meta.wikimedia.org/wiki/Complete_list_of_Wikimedia_projects">full list of available wikis and languages</a>. </p>
+
+            <h1 id="using-the-recent-changes-stream">Using the recent changes stream</h1>
+
+            <p>Each action is delivered as a change event. A change event may describe an edit to a Wikipedia article, a new page creation, a user registration, or other various log actions. </p>
+            <pre class="highlight javascript"><span class="kd">var</span> <span class="nx">socket</span> <span class="o">=</span> <span class="nx">io</span><span class="p">.</span><span class="nx">connect</span><span class="p">(</span><span class="s1">'stream.wikimedia.org/rc'</span><span class="p">);</span>
+
+            <span class="nx">socket</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">'connect'</span><span class="p">,</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+              <span class="nx">socket</span><span class="p">.</span><span class="nx">emit</span><span class="p">(</span><span class="s1">'subscribe'</span><span class="p">,</span> <span class="s1">'*'</span><span class="p">);</span>
+            <span class="p">});</span>
+
+            <span class="nx">socket</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">'change'</span><span class="p">,</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">data</span><span class="p">)</span> <span class="p">{</span>
+              <span class="c1">// Handle each change...
+            </span>  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">data</span><span class="p">);</span>
+            <span class="p">});</span>
+            </pre>
+
+            <p>Below is a live example from the recent changes stream, sampled every seven seconds. There are currently <span id="rate">0</span> changes per minute.</p>
+            
+            <div id="results"></div>
+
+            <h2 id="change-event-details">Change event details</h2>
+
+            <table class="pure-table pure-table-bordered">
+                <thead>
+                    <tr>
+                    <th>Parameter</th>
+                    <th>Description</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                    <td>comment</td>
+                    <td>A description of the action. For edits, this is the value of the user&#39;s edit summary.</td>
+                    </tr>
+                    <tr>
+                    <td>wiki</td>
+                    <td>The source wiki&#39;s shorthand name.</td>
+                    </tr>
+                    <tr>
+                    <td>server_name</td>
+                    <td>The source wiki&#39;s server name.</td>
+                    </tr>
+                    <tr>
+                    <td>title</td>
+                    <td>The page title for the action.</td>
+                    </tr>
+                    <tr>
+                    <td>timestamp</td>
+                    <td>Timestamp, in seconds.</td>
+                    </tr>
+                    <tr>
+                    <td>server_script_path</td>
+                    <td>The source wiki&#39;s path, which is helpful for finding <code>api.php</code> for other queries.</td>
+                    </tr>
+                    <tr>
+                    <td>namespace</td>
+                    <td>The <a href="https://www.mediawiki.org/wiki/Help:Namespaces">MediaWiki namespace</a> for this action.</td>
+                    </tr>
+                    <tr>
+                    <td>server_url</td>
+                    <td>The source wiki&#39;s URL.</td>
+                    </tr>
+                    <tr>
+                    <td>length</td>
+                    <td>For an <code>edit</code> action, this is an array with the byte size of the <code>new</code> and <code>old</code> version of the page. For a <code>new</code> action, the <code>old</code> value is <code>null</code>.</td>
+                    </tr>
+                    <tr>
+                    <td>user</td>
+                    <td>The username of the user who submitted this change. For unregistered users, this is their IP address.</td>
+                    </tr>
+                    <tr>
+                    <td>bot</td>
+                    <td>Whether the user who submitted this action has a <a href="https://meta.wikimedia.org/wiki/Bot">bot flag</a>.</td>
+                    </tr>
+                    <tr>
+                    <td>type</td>
+                    <td>Values may include <code>edit</code>, <code>log</code>, or <code>new</code>.</td>
+                    </tr>
+                    <tr>
+                    <td>id</td>
+                    <td>The id for the action within the source wiki&#39;s <a href="https://www.mediawiki.org/wiki/Manual:Recentchanges_table">recent changes table</a> (TODO: verify?)</td>
+                    </tr>
+                    <tr>
+                    <td>minor</td>
+                    <td>Whether the action has a minor flag.</td>
+                    </tr>
+                    <tr>
+                    <td>revision</td>
+                    <td>For an <code>edit</code> action, this is an array with the revision id for the <code>new</code> and <code>old</code> version of the page.</td>
+                    </tr>
+                    <tr>
+                    <td>patrolled</td>
+                    <td>Whether the action has a <a href="https://www.mediawiki.org/wiki/Help:Patrolled_edits">patrolled flag</a>. Only present for <code>new</code> and <code>edit</code> actions. (TODO: verify?)</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <p>The following parameters are only present for <code>log</code>-type actions:</p>
+
+            <table class="pure-table pure-table-bordered">
+                <thead>
+                    <tr>
+                    <th>Parameter</th>
+                    <th>Description</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                    <td>log_action</td>
+                    <td>Values may include <code>create</code> (new users), <code>move</code> (changing a page title), <code>hit</code> (triggering an abuse filter), or <code>delete</code> (removing a page).</td>
+                    </tr>
+                    <tr>
+                    <td>log_action_comment</td>
+                    <td>A description of a <code>log</code> action.</td>
+                    </tr>
+                    <tr>
+                    <td>log_id</td>
+                    <td>TODO: What is this?</td>
+                    </tr>
+                    <tr>
+                    <td>log_params</td>
+                    <td>An array of additional params related to the <code>log_action</code>.</td>
+                    </tr>
+                    <tr>
+                    <td>log_type</td>
+                    <td>TODO: How is this different from <code>log_action</code>?</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <p>TODO: verify against <a href="https://github.com/wikimedia/mediawiki-core/blob/master/includes/rcfeed/MachineReadableRCFeedFormatter.php">MachineReadableRCFeedFormatter.php</a> and the <a href="https://www.mediawiki.org/wiki/Manual:Recentchanges_table">RecentChanges table</a>.</p>
+
+            <h2 id="socketio-client-libraries">SocketIO client libraries</h2>
+
+            <ul>
+                <li>Android: <a href="https://github.com/nkzawa/socket.io-client.java">socket.io-client.java</a></li>
+                <li>iOS: <a href="https://github.com/MegaBits/SIOSocket">SIOSocket</a></li>
+                <li>JavaScript (Node.js): <a href="https://github.com/Automattic/socket.io-client">socket.io-client</a></li>
+                <li>Python: <a href="https://gevent-socketio.readthedocs.org/en/latest/">Gevent-socketio</a></li>
+            </ul>
+
+            <h1 id="more-information">More information</h1>
+
+            <p>Learn more about the setup and operations of the recent changes stream:</p>
+
+            <ul>
+                <li><a href="https://wikitech.wikimedia.org/wiki/RCStream">RCStream</a>, which broadcasts socket.io events for each change</li>
+                <li>MediaWiki&#39;s <a href="https://www.mediawiki.org/wiki/Manual:$wgRCFeeds">$wgRCFeeds</a>, which handles recent changes updates</li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>
