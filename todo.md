@@ -1,0 +1,11 @@
+- [ ] Screenshots for showcase
+-   [ ] RC Map
+-   [ ] Listen to Wikipedia
+-   [ ] Wikipedia globe
+-   [ ] WikiChanges
+-   [ ] Co-editing patterns on Wikipedia
+-   [ ] Information Imbalance: Africa on Wikipedia
+-   [ ] http://notabilia.net/
+-   [ ] http://www.chrisharrison.net/index.php/Visualizations/ClusterBall
+-   [ ] http://wikistream.wmflabs.org/
+-   [ ] http://moebio.com/research/wikipediagender/
