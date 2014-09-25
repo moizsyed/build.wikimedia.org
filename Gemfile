@@ -27,3 +27,5 @@ gem "middleman-blog"
 
 # Publishing to GitHub pages
 gem 'middleman-gh-pages'
+
+gem 'pure-sass'

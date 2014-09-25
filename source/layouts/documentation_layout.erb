@@ -1,12 +1,15 @@
 <% wrap_layout :layout do %>
-  <header>
+  <header class="pure-u-1">
     <p>Documentation</p>
     <h1><%= current_page.data.title %></h1>
   </header>
 
-  <aside>
+  <aside class="pure-u-1-4">
+    <div class="anchorific"></div>
   </aside>
 
   <p><%= current_page.data.description %></p>
-  <%= yield %>
+  <div class="pure-u-3-4 documentation">
+    <%= yield %>
+  </div>
 <% end %>
