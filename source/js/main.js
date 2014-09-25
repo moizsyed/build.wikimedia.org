@@ -1,5 +1,5 @@
 $(function() {
-    $('.content').anchorific({
+    $('.documentation').anchorific({
         navigation: '.anchorific', // position of navigation
         speed: 200, // speed of sliding back to top
         anchorClass: 'anchor', // class of anchor links

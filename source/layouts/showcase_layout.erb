@@ -1,11 +1,11 @@
 <% wrap_layout :layout do %>
-  <header>
+  <header class="pure-u-1">
     <p><%= current_page.data.year %></p>
     <h1><%= current_page.data.title %></h1>
     <%= image_tag File.join('showcase', current_page.slug, current_page.data.image) %>
   </header>
 
-  <aside>
+  <aside class="pure-u-1-4">
     <h2>Data sources / APIs</h2>
     <ul>
       <% current_page.data.data_sources.each do |data_source| %>
@@ -15,6 +15,8 @@
       <% end %>
     </ul>
   </aside>
-   <p><%= current_page.data.description %></p>
-  <%= yield %>
+   <div class="pure-u-3-4">
+    <p><%= current_page.data.description %></p>
+    <%= yield %>
+   </div>
 <% end %>
