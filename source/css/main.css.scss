@@ -91,6 +91,8 @@ ul.documentation {
 
   h1 {
     font-size: 30px;
+    margin-top: 1em;
+    margin-bottom: .2em;
   }
   h2 {
     font-size: 24px;
@@ -98,7 +100,7 @@ ul.documentation {
   }
 
   p {
-    margin-bottom: 2em;
+    margin-bottom: .2em;
   }
 
   p, h2 {
@@ -131,6 +133,8 @@ ul.documentation {
     word-wrap: break-word;                 /* IE 5.5+ and up */
     /* overflow-x: auto; */                /* Firefox 2 only */
     /* width: 99%; */          /* only if needed */
+    margin-top: .5em;
+    margin-bottom: 2em;
   }
 
   table {

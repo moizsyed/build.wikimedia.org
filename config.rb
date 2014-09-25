@@ -43,7 +43,7 @@ set :relative_links, true
 activate :relative_assets
 
 set :markdown_engine, :redcarpet
-set :markdown, fenced_code_blocks: true, tables: true, with_toc_data: true
+set :markdown, fenced_code_blocks: true, tables: true#, with_toc_data: true
 
 
 activate :syntax
@@ -72,11 +72,11 @@ configure :build do
   # set :http_prefix, "/Content/images/"
 end
 
-helpers do
-  def table_of_contents(resource)
-    content = File.read(resource.source_file)
-    toc_renderer = Redcarpet::Render::HTML_TOC.new
-    markdown = Redcarpet::Markdown.new(toc_renderer, nesting_level: 2) # nesting_level is optional
-    markdown.render(content)
-  end
-end
+# helpers do
+#   def table_of_contents(resource)
+#     content = File.read(resource.source_file)
+#     toc_renderer = Redcarpet::Render::HTML_TOC.new
+#     markdown = Redcarpet::Markdown.new(toc_renderer, nesting_level: 2) # nesting_level is optional
+#     markdown.render(content)
+#   end
+# end
