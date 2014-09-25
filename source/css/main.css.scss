@@ -215,3 +215,13 @@ ul.documentation {
     }
   }
 }
+
+.anchorific li.active > a {
+  box-shadow: 4px 0px $color-dark-blue inset;
+}
+
+.fixed {
+  position: fixed;
+  top: 3em;
+  left: 55em;
+}
